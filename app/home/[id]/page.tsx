@@ -11,9 +11,11 @@ import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_noStore as noStore} from "next/cache";
 
 
 async function getData(homeid: string) {
+  noStore()
   const data = await prisma.home.findUnique({
     where: {
       id: homeid,
